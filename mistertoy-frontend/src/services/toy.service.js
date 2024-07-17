@@ -12,7 +12,8 @@ export const toyService = {
     remove,
     getEmptyToy,
     getRandomToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getFilterFromSearchParams,
 }
 
 // _createToy()
@@ -20,12 +21,10 @@ export const toyService = {
 function query(filterBy = {}) {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
-            if (!filterBy.txt) filterBy.txt = ''
-            if (!filterBy.maxPrice) filterBy.maxPrice = Infinity
-            const regExp = new RegExp(filterBy.txt, 'i')
+            if (!filterBy.name) filterBy.name = ''
+            const regExp = new RegExp(filterBy.name, 'i')
             return toys.filter(toy =>
-                regExp.test(toy.name) &&
-                toy.price <= filterBy.maxPrice
+                regExp.test(toy.name) && (toy.inStock.toString() === filterBy.inStock || filterBy.inStock === 'all')
             )
         })
 }
@@ -65,8 +64,17 @@ function getRandomToy() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: '' }
+    return { name: '', inStock: 'all' }
 }
+
+
+function getFilterFromSearchParams(searchParams) {
+    return {
+        name: searchParams.get('name') || '',
+        inStock: searchParams.get('inStock') || 'all',
+    }
+}
+
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
