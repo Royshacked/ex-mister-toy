@@ -39,12 +39,13 @@ export function ToyFilter() {
             </select>
         </label>
 
-        {/* <label htmlFor="labels">
-            <select multiple name="labels" id="labels">
-                
+        <label htmlFor="sortby">Sort By:
+            <select name="sortBy" id="sortby" onChange={handleChange} value={filterByToEdit.sortBy}>
+                <option value="">None</option>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="createdAt">Created at</option>
             </select>
-        </label> */}
-
-
+        </label>
     </section>
 }

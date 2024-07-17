@@ -21,11 +21,27 @@ export const toyService = {
 function query(filterBy = {}) {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
-            if (!filterBy.name) filterBy.name = ''
-            const regExp = new RegExp(filterBy.name, 'i')
-            return toys.filter(toy =>
-                regExp.test(toy.name) && (toy.inStock.toString() === filterBy.inStock || filterBy.inStock === 'all')
-            )
+            var filteredToys = toys
+
+            if (filterBy.name || filterBy.inStock !== 'all') {
+                const regExp = new RegExp(filterBy.name, 'i')
+
+                filteredToys = filteredToys.filter(toy =>
+                    regExp.test(toy.name) && (toy.inStock.toString() === filterBy.inStock || filterBy.inStock === 'all')
+                )
+            }
+
+            if (filterBy.sortBy) {
+                const { sortBy } = filterBy
+                const dir = +filterBy.desc
+
+                filteredToys = filteredToys.sort((t1, t2) => {
+                    if (sortBy === 'name') return t1.name.localeCompare(t2.name) * dir
+                    if (sortBy === 'price' || sortBy === 'createdAt') return (t1[sortBy] - t2[sortBy]) * dir
+                })
+            }
+
+            return filteredToys
         })
 }
 
@@ -43,8 +59,6 @@ function save(toy) {
     if (toy._id) {
         return storageService.put(STORAGE_KEY, toy)
     } else {
-        // when switching to backend - remove the next line
-        // toy.owner = userService.getLoggedinUser()
         return storageService.post(STORAGE_KEY, toy)
     }
 }
@@ -64,7 +78,7 @@ function getRandomToy() {
 }
 
 function getDefaultFilter() {
-    return { name: '', inStock: 'all' }
+    return { name: '', inStock: 'all', label: '', sortBy: '', desc: '1' }
 }
 
 
@@ -72,6 +86,9 @@ function getFilterFromSearchParams(searchParams) {
     return {
         name: searchParams.get('name') || '',
         inStock: searchParams.get('inStock') || 'all',
+        label: searchParams.get('label') || '',
+        sortBy: searchParams.get('sortBy') || '',
+        desc: searchParams.get('desc') || '1',
     }
 }
 
@@ -82,11 +99,11 @@ function getFilterFromSearchParams(searchParams) {
 function _createToy() {
     const toy = {
         _id: '',
-        name: 'Talking Doll',
-        price: 123,
-        labels: ['Doll', 'Battery Powered', 'Baby'],
-        createdAt: 1631031801011,
-        inStock: true,
+        name: 'G.i.Joe',
+        price: 500,
+        labels: ['Doll'],
+        createdAt: Date.now(),
+        inStock: false,
     }
 
     return save(toy)
