@@ -7,7 +7,7 @@ export function ToyList({ toys, onRemove }) {
             {toys.map(toy =>
                 <li key={toy._id}>
                     <ToyPreview toy={toy} />
-                    <Link to='/toy/edit'><button>Edit</button></Link>
+                    <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
                     <button onClick={() => onRemove(toy._id)}>Delete</button>
                 </li>
             )}
