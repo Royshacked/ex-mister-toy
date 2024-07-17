@@ -28,6 +28,7 @@ export function ToyIndex() {
     return <section className="toy-index">
         <div className="toys-header">
             <h2>Our Toys</h2>
+
             <Link to='/toy/edit'><button>Add</button></Link>
         </div>
         <ToyList toys={toys} onRemove={onRemove} />
