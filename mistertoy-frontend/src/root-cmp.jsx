@@ -1,15 +1,23 @@
 import { Provider } from 'react-redux'
-
-
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 import './index.css'
-import './App.css'
+// import './App.css'
+import './assets/style/main.css'
+
 import { store } from './store/store.js'
+import { ToyIndex } from './pages/ToyIndex.jsx'
+import { AppHeader } from './cmps/AppHeader.jsx'
 
 export function App() {
 
   return <Provider store={store}>
-    <h2>Mister Toy</h2>
+    <Router>
+      <AppHeader />
+      <Routes>
+        <Route path="/toy" element={<ToyIndex />} />
+      </Routes>
+    </Router>
   </Provider>
 
 }
