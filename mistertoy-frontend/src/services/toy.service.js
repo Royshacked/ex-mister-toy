@@ -15,6 +15,8 @@ export const toyService = {
     getDefaultFilter
 }
 
+// _createToy()
+
 function query(filterBy = {}) {
     return storageService.query(STORAGE_KEY)
         .then(toys => {
@@ -69,4 +71,15 @@ function getDefaultFilter() {
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 6', price: 980}).then(x => console.log(x))
 
+function _createToy() {
+    const toy = {
+        _id: '',
+        name: 'Talking Doll',
+        price: 123,
+        labels: ['Doll', 'Battery Powered', 'Baby'],
+        createdAt: 1631031801011,
+        inStock: true,
+    }
 
+    return save(toy)
+}
