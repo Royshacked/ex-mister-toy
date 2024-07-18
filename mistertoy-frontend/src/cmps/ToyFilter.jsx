@@ -8,7 +8,7 @@ export function ToyFilter() {
     const dispatch = useDispatch()
 
     function handleChange({ target }) {
-        const { name, value } = target
+        let { name, value } = target
 
         switch (target.type) {
             case 'number':
@@ -22,8 +22,7 @@ export function ToyFilter() {
 
             default: break
         }
-
-        dispatch({ type: SET_FILTER_BY, filterBy: { ...filterByToEdit, [name]: value } })
+        dispatch({ type: SET_FILTER_BY, filterBy: { ...filterByToEdit, [name]: name === 'desc' ? +filterByToEdit.desc * -1 : value } })
     }
 
     return <section className="toy-filter">
@@ -41,11 +40,16 @@ export function ToyFilter() {
 
         <label htmlFor="sortby">Sort By:
             <select name="sortBy" id="sortby" onChange={handleChange} value={filterByToEdit.sortBy}>
-                <option value="">None</option>
+                <option value="">Sort By</option>
                 <option value="name">Name</option>
                 <option value="price">Price</option>
                 <option value="createdAt">Created at</option>
             </select>
         </label>
+
+        {filterByToEdit.sortBy && <label htmlFor="desc">
+            <input type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />
+            {+filterByToEdit.desc > 0 ? '📈' : '📉'}
+        </label>}
     </section>
 }
