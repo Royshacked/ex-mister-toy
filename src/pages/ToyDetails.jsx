@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+
 import { toyService } from "../services/toy.service"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+
 
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
@@ -12,7 +15,7 @@ export function ToyDetails() {
 
     function loadToy(id) {
         return toyService.getById(id)
-            .then(setToy)
+            .then(toy => setToy(toy))
             .catch((err) => {
                 console.log(err)
                 showErrorMsg('Could\'nt get toy')

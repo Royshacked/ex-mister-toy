@@ -16,7 +16,7 @@ export function ToyEdit() {
 
     function loadToyToEdit(id) {
         return toyService.getById(id)
-            .then(toy => setToyToEdit({ ...toy }))
+            .then(setToyToEdit)
             .catch((err) => {
                 console.log(err)
                 showErrorMsg('Could\'nt get toy for edit')

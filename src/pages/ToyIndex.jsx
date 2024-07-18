@@ -14,6 +14,7 @@ import { SET_FILTER_BY } from "../store/reducers/toy.reducer.js"
 export function ToyIndex() {
     const toys = useSelector(state => state.toyModule.toys)
     const filterBy = useSelector(state => state.toyModule.filterBy)
+    const isLoading = useSelector(state => state.toyModule.isLoading)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
@@ -50,6 +51,6 @@ export function ToyIndex() {
             <Link to='/toy/edit'><button>Add</button></Link>
         </div>
 
-        <ToyList toys={toys} onRemove={onRemove} />
+        {!isLoading && <ToyList toys={toys} onRemove={onRemove} />}
     </section>
 }
