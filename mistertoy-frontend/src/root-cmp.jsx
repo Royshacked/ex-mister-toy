@@ -6,9 +6,11 @@ import './index.css'
 import './assets/style/main.css'
 
 import { store } from './store/store.js'
+
 import { ToyIndex } from './pages/ToyIndex.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
+import { ToyDetails } from './pages/ToyDetails.jsx'
 
 export function App() {
 
@@ -19,6 +21,7 @@ export function App() {
         <Route path="/toy" element={<ToyIndex />} />
         <Route path="/toy/edit" element={<ToyEdit />} />
         <Route path="/toy/edit/:id" element={<ToyEdit />} />
+        <Route path="/toy/:id" element={<ToyDetails />} />
       </Routes>
     </Router>
   </Provider>
