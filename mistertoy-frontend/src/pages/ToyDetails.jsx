@@ -26,6 +26,7 @@ export function ToyDetails() {
         <span>{new Date(toy.createdAt).toUTCString()}</span>
         <span>{toy.labels.join(',')}</span>
 
+
         <Link to="/toy"><button>Back</button></Link>
     </section>
 }
