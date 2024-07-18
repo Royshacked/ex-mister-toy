@@ -67,6 +67,8 @@ function getEmptyToy() {
     return {
         name: '',
         price: '',
+        labels: ['doll'],
+        inStock: true,
     }
 }
 

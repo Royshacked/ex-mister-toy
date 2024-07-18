@@ -8,7 +8,7 @@ export function ToyFilter() {
     const dispatch = useDispatch()
 
     function handleChange({ target }) {
-        let { name, value } = target
+        const { name, value } = target
 
         switch (target.type) {
             case 'number':
