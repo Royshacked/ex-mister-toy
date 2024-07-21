@@ -51,6 +51,6 @@ export function ToyIndex() {
             <Link to='/toy/edit'><button>Add</button></Link>
         </div>
 
-        {!isLoading && <ToyList toys={toys} onRemove={onRemove} />}
+        {!isLoading ? <ToyList toys={toys} onRemove={onRemove} /> : <h2>Loading...</h2>}
     </section>
 }
