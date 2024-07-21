@@ -17,9 +17,9 @@ export function ToyIndex() {
     const isLoading = useSelector(state => state.toyModule.isLoading)
 
     const [searchParams, setSearchParams] = useSearchParams()
-    const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
-
     const dispatch = useDispatch()
+
+    const defaultFilter = toyService.getFilterFromSearchParams(searchParams)
 
     useEffect(() => {
         dispatch({ type: SET_FILTER_BY, filterBy: defaultFilter })
