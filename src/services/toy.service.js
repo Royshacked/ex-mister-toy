@@ -3,6 +3,10 @@ import { httpService } from './http.service.js'
 // const STORAGE_KEY = 'toyDB'
 const BASE_URL = 'toy/'
 
+const labels = ['on wheels', 'box game', 'art', 'baby', 'doll', 'puzzle',
+    'outdoor', 'battery powered'] 
+    
+
 export const toyService = {
     query,
     getById,
@@ -11,6 +15,7 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getFilterFromSearchParams,
+    getLabelsForFilter,
     getLabels,
 }
 
@@ -63,8 +68,12 @@ function getFilterFromSearchParams(searchParams) {
     }
 }
 
-function getLabels() {
+function getLabelsForFilter() {
     return httpService.get(BASE_URL+'labels')
+}
+
+function getLabels() {
+    return labels
 }
 
 

@@ -6,10 +6,12 @@ import { saveToy } from "../store/actions/toy.actions"
 
 export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy)
+    const labels = toyService.getLabels()
     const navigate = useNavigate()
     const { id } = useParams()
 
     useEffect(() => {
+
         if (!id) return
         loadToyToEdit(id)
     }, [])
@@ -54,6 +56,12 @@ export function ToyEdit() {
             <label htmlFor="price">
                 <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} />
             </label>
+
+
+            {labels.map(label =>
+                <label key={label} htmlFor="label">{label}<input type="checkbox" id="label" name="label" value={label}></input></label>
+            )}
+
 
             <button>Save</button>
         </form>

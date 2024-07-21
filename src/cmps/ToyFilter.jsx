@@ -11,7 +11,7 @@ export function ToyFilter() {
 
 
     useEffect(() => {
-        toyService.getLabels()
+        toyService.getLabelsForFilter()
             .then(setLabelsForFilter)
     }, [])
 
@@ -48,7 +48,7 @@ export function ToyFilter() {
             </select>
         </label>
 
-        <label htmlFor="labels">Sort By:
+        <label htmlFor="labels">
             <select multiple name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []}>
                 {labelsForFilter.map(label =>
                     <option key={label} value={label}>{label}</option>
