@@ -11,6 +11,7 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
 
 export function App() {
 
@@ -24,6 +25,7 @@ export function App() {
         <Route path="/toy/:id" element={<ToyDetails />} />
       </Routes>
     </Router>
+    <UserMsg />
   </Provider>
 }
 
