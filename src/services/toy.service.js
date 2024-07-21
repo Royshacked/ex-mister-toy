@@ -57,7 +57,7 @@ function getFilterFromSearchParams(searchParams) {
     return {
         name: searchParams.get('name') || '',
         inStock: searchParams.get('inStock') || 'all',
-        labels: searchParams.get('label') || '',
+        labels: searchParams.get('labels').split(',') || [],
         sortBy: searchParams.get('sortBy') || '',
         desc: searchParams.get('desc') || '1',
     }
