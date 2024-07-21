@@ -1,11 +1,19 @@
 import { useDispatch, useSelector } from "react-redux"
 
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer"
+import { toyService } from "../services/toy.service"
+import { useEffect, useState } from "react"
 
 export function ToyFilter() {
     const filterByToEdit = useSelector(state => state.toyModule.filterBy)
-
+    const [labelsForFilter, setLabelsForFilter] = useState([])
     const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        toyService.getLabels()
+            .then(setLabelsForFilter)
+    }, [])
 
     function handleChange({ target }) {
         let { name, value } = target
@@ -19,9 +27,11 @@ export function ToyFilter() {
             case 'checkbox':
                 value = target.checked
                 break
-
+            case 'select-multiple':
+                value = Array.from(target.selectedOptions, option => option.value || [])
             default: break
         }
+
         dispatch({ type: SET_FILTER_BY, filterBy: { ...filterByToEdit, [name]: name === 'desc' ? +filterByToEdit.desc * -1 : value } })
     }
 
@@ -38,6 +48,14 @@ export function ToyFilter() {
             </select>
         </label>
 
+        <label htmlFor="labels">Sort By:
+            <select multiple name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []}>
+                {labelsForFilter.map(label =>
+                    <option key={label} value={label}>{label}</option>
+                )}
+            </select>
+        </label>
+
         <label htmlFor="sortby">Sort By:
             <select name="sortBy" id="sortby" onChange={handleChange} value={filterByToEdit.sortBy}>
                 <option value="">Sort By</option>
@@ -46,6 +64,8 @@ export function ToyFilter() {
                 <option value="createdAt">Created at</option>
             </select>
         </label>
+
+
 
         {filterByToEdit.sortBy && <label htmlFor="desc">
             <input type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />

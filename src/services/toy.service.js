@@ -11,6 +11,7 @@ export const toyService = {
     getEmptyToy,
     getDefaultFilter,
     getFilterFromSearchParams,
+    getLabels,
 }
 
 
@@ -48,7 +49,7 @@ function getEmptyToy() {
 
 
 function getDefaultFilter() {
-    return { name: '', inStock: 'all', label: '', sortBy: '', desc: '1' }
+    return { name: '', inStock: 'all', labels: '', sortBy: '', desc: '1' }
 }
 
 
@@ -56,10 +57,14 @@ function getFilterFromSearchParams(searchParams) {
     return {
         name: searchParams.get('name') || '',
         inStock: searchParams.get('inStock') || 'all',
-        label: searchParams.get('label') || '',
+        labels: searchParams.get('label') || '',
         sortBy: searchParams.get('sortBy') || '',
         desc: searchParams.get('desc') || '1',
     }
+}
+
+function getLabels() {
+    return httpService.get(BASE_URL+'labels')
 }
 
 
