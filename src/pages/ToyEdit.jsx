@@ -27,11 +27,30 @@ export function ToyEdit() {
 
     function handleChange({ target }) {
         let { name, value } = target
-        value = target.type === 'number' ? +value : value
+        name === 'number' ? +value : value
 
         setToyToEdit(prevToy => ({ ...prevToy, [name]: value }))
     }
 
+    function handleLabelChange({ target }) {
+        const { name, value: label } = target
+
+        setToyToEdit(prevToy => ({ ...prevToy, [name]: !prevToy[name].includes(label) ? addLabel(label) : removeLabel(label) }))
+    }
+
+    function addLabel(newLabel) {
+        const newLabels = toyToEdit.labels
+        newLabels.push(newLabel)
+        return newLabels
+    }
+
+    function removeLabel(newLabel) {
+        let newLabels = toyToEdit.labels
+        newLabels = newLabels.filter(label => label !== newLabel)
+        return newLabels
+    }
+
+    // console.log(toyToEdit.labels)
     function onHandleSubmit(ev) {
         ev.preventDefault()
 
@@ -45,21 +64,23 @@ export function ToyEdit() {
                 showErrorMsg('Could\'nt save toy')
             })
     }
-
+    // console.log(toyToEdit)
     return <section className="toy-edit">
         <h2>{id ? 'Edit Toy' : 'Add a Toy'}</h2>
         <form action="" onSubmit={onHandleSubmit}>
             <label htmlFor="name">
-                <input type="text" id="name" name="name" placeholder="Enter name" value={toyToEdit.name || ''} onChange={handleChange} />
+                <input type="text" id="name" name="name" placeholder="Enter name" value={toyToEdit.name || ''} onChange={handleChange} required={!id} />
             </label>
 
             <label htmlFor="price">
-                <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} />
+                <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} required={!id} />
             </label>
 
 
             {labels.map(label =>
-                <label key={label} htmlFor="label">{label}<input type="checkbox" id="label" name="label" value={label}></input></label>
+                <label key={label} htmlFor="labels">{label}
+                    <input type="checkbox" id="labels" name="labels" value={label} checked={toyToEdit.labels.includes(label)} onChange={handleLabelChange}></input>
+                </label>
             )}
 
 

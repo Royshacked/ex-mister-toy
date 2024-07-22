@@ -25,7 +25,6 @@ export function ToyIndex() {
         dispatch({ type: SET_FILTER_BY, filterBy: defaultFilter })
     }, [])
 
-    console.log(filterBy)
     useEffect(() => {
         setSearchParams({ ...filterBy, labels: filterBy.labels ? filterBy.labels.join(',') : '' })
         loadToys(filterBy)
