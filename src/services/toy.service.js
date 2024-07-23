@@ -6,6 +6,29 @@ const BASE_URL = 'toy/'
 const labels = ['on wheels', 'box game', 'art', 'baby', 'doll', 'puzzle',
     'outdoor', 'battery powered']
 
+const shopBranches = [
+    {
+        name: 'tel aviv',
+        coords: {
+            lat: 32.109333,
+            lng: 34.855499,
+        }
+    },
+    {
+        name: 'hadera',
+        coords: {
+            lat: 32.4374056,
+            lng: 34.9256168,
+        }
+    },
+    {
+        name: 'bat yam',
+        coords: {
+            lat: 32.017136,
+            lng: 34.745441,
+        }
+    },
+]
 
 export const toyService = {
     query,
@@ -17,6 +40,8 @@ export const toyService = {
     getFilterFromSearchParams,
     getLabelsForFilter,
     getLabels,
+    getShopBranches,
+    getDefaultBranch
 }
 
 
@@ -74,6 +99,20 @@ function getLabelsForFilter() {
 
 function getLabels() {
     return labels
+}
+
+function getShopBranches() {
+    return shopBranches
+}
+
+function getDefaultBranch() {
+    return {
+        name: 'tel aviv',
+        coords: {
+            lat: 32.109333,
+            lng: 34.855499,
+        }
+    }
 }
 
 

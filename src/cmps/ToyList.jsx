@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ToyPreview } from "./toyPreview.jsx";
 
 export function ToyList({ toys, onRemove }) {
+    if (!toys.length) return <h2>No Toys...</h2>
     return <section className="toy-list">
         <ul>
             {toys.map(toy =>

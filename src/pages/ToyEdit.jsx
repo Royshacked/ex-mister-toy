@@ -69,11 +69,11 @@ export function ToyEdit() {
         <h2>{id ? 'Edit Toy' : 'Add a Toy'}</h2>
         <form action="" onSubmit={onHandleSubmit}>
             <label htmlFor="name">
-                <input type="text" id="name" name="name" placeholder="Enter name" value={toyToEdit.name || ''} onChange={handleChange} required={!id} />
+                <input type="text" id="name" name="name" placeholder="Enter name" value={toyToEdit.name || ''} onChange={handleChange} required />
             </label>
 
             <label htmlFor="price">
-                <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} required={!id} />
+                <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} required />
             </label>
 
 

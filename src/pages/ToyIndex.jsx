@@ -43,7 +43,6 @@ export function ToyIndex() {
                 showErrorMsg('Couldn\'nt remove toy')
             })
     }
-
     return <section className="toy-index">
         <div className="toys-header">
             <h2>Our Toys</h2>
