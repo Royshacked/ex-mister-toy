@@ -40,13 +40,6 @@ export function ToyEdit() {
             })
     }
 
-    // function handleChange() {
-    //     let { name, value } = target
-    //     name === 'number' ? +value : value
-
-    //     setToyToEdit(prevToy => ({ ...prevToy, [name]: value }))
-    // }
-
     function handleLabelChange({ target }) {
         const { name, value: label } = target
 
@@ -87,9 +80,9 @@ export function ToyEdit() {
                 price: '',
             }}
             validationSchema={EditSchema}
-            onSubmit={values => {
-                console.log(values)
-            }}
+        // onSubmit={values => {
+        //     console.log(values)
+        // }}
         >
             {({ errors, touched, values }) => (
                 <Form onSubmit={(ev) => onHandleSubmit(ev, values)}>

@@ -13,6 +13,7 @@ import { AppHeader } from './cmps/AppHeader.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { DashBoard } from './pages/DashBoard.jsx'
 
 export function App() {
 
@@ -21,6 +22,7 @@ export function App() {
       <AppHeader />
       <Routes>
         <Route path="/about" element={<About />} />
+        <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/toy" element={<ToyIndex />} />
         <Route path="/toy/edit" element={<ToyEdit />} />
         <Route path="/toy/edit/:id" element={<ToyEdit />} />
@@ -30,5 +32,7 @@ export function App() {
     <UserMsg />
   </Provider>
 }
+
+
 
 

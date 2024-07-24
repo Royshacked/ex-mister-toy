@@ -1,0 +1,12 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+}
+
+.dashboard div {
+    width: 30%;
+    padding: 1rem;
+    border: 1px solid lightgray;
+}

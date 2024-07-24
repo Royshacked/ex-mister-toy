@@ -23,6 +23,8 @@ export function ToyIndex() {
 
     useEffect(() => {
         dispatch({ type: SET_FILTER_BY, filterBy: defaultFilter })
+
+        return () => dispatch({ type: SET_FILTER_BY, filterBy: toyService.getDefaultFilter() })
     }, [])
 
     useEffect(() => {

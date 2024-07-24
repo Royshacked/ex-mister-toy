@@ -11,6 +11,7 @@
 
 /* Pages */
 @import 'pages/About.css';
+@import 'pages/DashBoard.css';
 @import 'pages/ToyIndex.css';
 @import 'pages/ToyEdit.css';
 
