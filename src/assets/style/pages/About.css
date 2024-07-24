@@ -1,0 +1,9 @@
+.about nav {
+    margin-block-end: 1rem;
+    padding-inline: 1rem;
+}
+
+.about-branches {
+    display: flex;
+    gap: 1rem;
+}

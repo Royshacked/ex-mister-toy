@@ -9,6 +9,7 @@ export function loadToys() {
     return toyService.query(filterBy)
         .then(toys => {
             store.dispatch({ type: SET_TOYS, toys })
+            return toys
         })
         .catch(err => {
             console.log('toy action -> Cannot load toys', err)

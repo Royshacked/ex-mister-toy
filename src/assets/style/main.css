@@ -10,14 +10,15 @@
 
 
 /* Pages */
+@import 'pages/About.css';
 @import 'pages/ToyIndex.css';
 @import 'pages/ToyEdit.css';
 
 /* Components */
 @import 'cmps/AppHeader.css';
-/* @import 'cmps/AppFooter.css';
-@import 'cmps/UserMsg.css'; */
+/* @import 'cmps/AppFooter.css'; */
+@import 'cmps/UserMsg.css';
 
-/* @import 'cmps/ToyFilter.css'; */
+@import 'cmps/ToyFilter.css';
 @import 'cmps/ToyList.css';
 @import 'cmps/ToyPreview.css';

@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div style={{ fontSize: 25 }}>{text}</div>;

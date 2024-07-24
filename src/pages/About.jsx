@@ -6,7 +6,6 @@ export function About() {
     const shopBranches = toyService.getShopBranches()
     const [branch, setBranch] = useState(toyService.getDefaultBranch())
 
-    console.log(branch)
     return <section className="about">
         <nav>
             <h2>Shop Branches</h2>

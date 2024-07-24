@@ -1,0 +1,21 @@
+.toy-filter {
+    padding-block: 1rem;
+    border-block: 1px solid lightgray;
+}
+
+.toy-filter h3 {
+    margin: 0;
+}
+
+.toy-filter .inputs-main {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+}
+
+
+
+.toy-filter .inputs-labels {
+    display: flex;
+    align-items: start;
+}

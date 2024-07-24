@@ -1,0 +1,9 @@
+.toy-edit {
+    border: 1px solid lightgray;
+    padding: 1rem;
+}
+
+.toy-edit-labels {
+    display: flex;
+    flex-direction: column;
+}

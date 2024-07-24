@@ -8,12 +8,12 @@ export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy)
     const labels = toyService.getLabels()
     const navigate = useNavigate()
-    const { id } = useParams()
+    const { id: toyId } = useParams()
 
     useEffect(() => {
 
-        if (!id) return
-        loadToyToEdit(id)
+        if (!toyId) return
+        loadToyToEdit(toyId)
     }, [])
 
     function loadToyToEdit(id) {
@@ -50,40 +50,41 @@ export function ToyEdit() {
         return newLabels
     }
 
-    // console.log(toyToEdit.labels)
     function onHandleSubmit(ev) {
         ev.preventDefault()
 
         saveToy(toyToEdit)
             .then(() => {
                 navigate('/toy')
-                showSuccessMsg(id ? 'Changes saved' : 'Toy added successfully')
+                showSuccessMsg(toyId ? 'Changes saved' : 'Toy added successfully')
             })
             .catch((err) => {
                 console.log(err)
                 showErrorMsg('Could\'nt save toy')
             })
     }
-    // console.log(toyToEdit)
+
     return <section className="toy-edit">
-        <h2>{id ? 'Edit Toy' : 'Add a Toy'}</h2>
+        <h2>{toyId ? 'Edit Toy' : 'Add a Toy'}</h2>
         <form action="" onSubmit={onHandleSubmit}>
+            <h3>Toy's Name</h3>
             <label htmlFor="name">
                 <input type="text" id="name" name="name" placeholder="Enter name" value={toyToEdit.name || ''} onChange={handleChange} required />
             </label>
 
+            <h3>Toy's Price</h3>
             <label htmlFor="price">
                 <input type="number" id="price" name="price" placeholder="Enter price" value={toyToEdit.price || ''} onChange={handleChange} required />
             </label>
 
-
-            {labels.map(label =>
-                <label key={label} htmlFor="labels">{label}
-                    <input type="checkbox" id="labels" name="labels" value={label} checked={toyToEdit.labels.includes(label)} onChange={handleLabelChange}></input>
-                </label>
-            )}
-
-
+            <h3>Categories</h3>
+            <div className="toy-edit-labels">
+                {labels.map(label =>
+                    <label key={label} htmlFor="labels">{label}
+                        <input type="checkbox" id="labels" name="labels" value={label} checked={toyToEdit.labels.includes(label)} onChange={handleLabelChange}></input>
+                    </label>
+                )}
+            </div>
             <button>Save</button>
         </form>
         <Link to='/toy'><button>Back</button></Link>

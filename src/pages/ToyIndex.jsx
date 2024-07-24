@@ -28,7 +28,7 @@ export function ToyIndex() {
     useEffect(() => {
         setSearchParams({ ...filterBy, labels: filterBy.labels ? filterBy.labels.join(',') : '' })
         loadToys(filterBy)
-            .then(() => showSuccessMsg('Toys loaded'))
+            .then((toys) => console.log(toys))
             .catch((err) => {
                 console.log(err)
                 showErrorMsg('Couldn\'nt load toys')
@@ -47,7 +47,7 @@ export function ToyIndex() {
         <div className="toys-header">
             <h2>Our Toys</h2>
             <ToyFilter filterBy={filterBy} />
-            <Link to='/toy/edit'><button>Add</button></Link>
+            <Link to='/toy/edit'><button>Add Toy</button></Link>
         </div>
 
         {!isLoading ? <ToyList toys={toys} onRemove={onRemove} /> : <h2>Loading...</h2>}
