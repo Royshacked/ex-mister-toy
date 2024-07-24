@@ -28,13 +28,13 @@ export function ToyFilter() {
                 value = target.checked
                 break
             case 'select-multiple':
-                value = Array.from(target.selectedOptions, option => option.value || [])
+                value = Array.from(target.selectedOptions, option => option.value)
             default: break
         }
 
         dispatch({ type: SET_FILTER_BY, filterBy: { ...filterByToEdit, [name]: name === 'desc' ? +filterByToEdit.desc * -1 : value } })
     }
-    console.log(filterByToEdit)
+
     return <section className="toy-filter">
         <div className="inputs-main">
             <h3>Filters</h3>
@@ -59,13 +59,10 @@ export function ToyFilter() {
                 </select>
             </label>
 
-
-
             {filterByToEdit.sortBy && <label htmlFor="desc">
                 <input type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />
                 {+filterByToEdit.desc > 0 ? '📈' : '📉'}
             </label>}
-
 
             <label className="inputs-labels" htmlFor="labels">
                 <select multiple name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []}>
