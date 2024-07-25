@@ -26,7 +26,6 @@ export function ToyEdit() {
     const { id } = useParams()
 
     useEffect(() => {
-
         if (!id) return
         loadToyToEdit(id)
     }, [])
@@ -60,11 +59,11 @@ export function ToyEdit() {
 
     function onHandleSubmit(ev, values) {
         ev.preventDefault()
-
+        console.log(toyToEdit)
         saveToy({ ...toyToEdit, name: values.name, price: values.price })
             .then(() => {
                 navigate('/toy')
-                showSuccessMsg(toyId ? 'Changes saved' : 'Toy added successfully')
+                showSuccessMsg(id ? 'Changes saved' : 'Toy added successfully')
             })
             .catch((err) => {
                 console.log(err)
