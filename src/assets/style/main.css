@@ -14,10 +14,10 @@
 @import 'pages/DashBoard.css';
 @import 'pages/ToyIndex.css';
 @import 'pages/ToyEdit.css';
+@import 'pages/ToyDetails.css';
 
 /* Components */
 @import 'cmps/AppHeader.css';
-/* @import 'cmps/AppFooter.css'; */
 @import 'cmps/UserMsg.css';
 
 @import 'cmps/ToyFilter.css';

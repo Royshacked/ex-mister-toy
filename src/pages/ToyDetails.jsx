@@ -24,11 +24,15 @@ export function ToyDetails() {
     }
     if (!toy) return <h2>Loading...</h2>
     return <section className="toy-details">
-        <h2>{toy.name}</h2>
-        <span>{toy.price}$</span>
-        <span>{new Date(toy.createdAt).toUTCString()}</span>
-        <span>{toy.labels.join(',')}</span>
-
+        <div>
+            <h2>{toy.name}</h2>
+            <span>Price:</span>
+            <span>{toy.price}$</span>
+            <span>Created At:</span>
+            <span>{new Date(toy.createdAt).toUTCString()}</span>
+            <span>Category:</span>
+            <span>{toy.labels.join(',')}</span>
+        </div>
 
         <Link to="/toy"><button>Back</button></Link>
     </section>

@@ -76,7 +76,7 @@ export function ToyEdit() {
         <Formik
             enableReinitialize
             initialValues={{
-                name: toyToEdit.name,
+                name: toyToEdit.name || '',
                 price: toyToEdit.price || '',
             }}
             validationSchema={EditSchema}

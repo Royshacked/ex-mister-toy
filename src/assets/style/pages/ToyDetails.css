@@ -1,0 +1,27 @@
+.toy-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+
+    width: 50%;
+
+    margin: auto;
+    padding: 1rem;
+    border: 1px solid lightgray;
+}
+
+.toy-details div {
+    display: grid;
+    gap: 1rem;
+}
+
+.toy-details div> :nth-child(odd) {
+    grid-column: 2;
+}
+
+.toy-details div> :nth-child(even) {
+    font-weight: bold;
+}
