@@ -23,12 +23,12 @@ export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy)
     const labels = toyService.getLabels()
     const navigate = useNavigate()
-    const { id: toyId } = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
 
-        if (!toyId) return
-        loadToyToEdit(toyId)
+        if (!id) return
+        loadToyToEdit(id)
     }, [])
 
     function loadToyToEdit(id) {
@@ -60,7 +60,7 @@ export function ToyEdit() {
 
     function onHandleSubmit(ev, values) {
         ev.preventDefault()
-        console.log(values)
+
         saveToy({ ...toyToEdit, name: values.name, price: values.price })
             .then(() => {
                 navigate('/toy')
@@ -71,21 +71,19 @@ export function ToyEdit() {
                 showErrorMsg('Could\'nt save toy')
             })
     }
-
     return <section className="toy-edit">
-        <h2>{toyId ? 'Edit Toy' : 'Add a Toy'}</h2>
+        <h2>{id ? 'Edit Toy' : 'Add a Toy'}</h2>
         <Formik
+            enableReinitialize
             initialValues={{
-                name: '',
-                price: '',
+                name: toyToEdit.name,
+                price: toyToEdit.price || '',
             }}
             validationSchema={EditSchema}
-        // onSubmit={values => {
-        //     console.log(values)
-        // }}
         >
-            {({ errors, touched, values }) => (
-                <Form onSubmit={(ev) => onHandleSubmit(ev, values)}>
+            {({ errors, touched, values, initialValues }) => (
+
+                <Form onSubmit={(ev) => onHandleSubmit(ev, values)} >
                     <h3>Toy's Name</h3>
                     <label htmlFor="name">
                         <Field name="name" id="name" placeholder="Enter name" required />
