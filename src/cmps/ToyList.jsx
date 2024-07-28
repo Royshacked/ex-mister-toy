@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
 import { ToyPreview } from "./toyPreview.jsx";
 
 export function ToyList({ toys, onRemove }) {
@@ -8,8 +11,10 @@ export function ToyList({ toys, onRemove }) {
             {toys.map(toy =>
                 <li key={toy._id}>
                     <ToyPreview toy={toy} />
-                    <Link to={`/toy/edit/${toy._id}`}><button>Edit</button></Link>
-                    <button onClick={() => onRemove(toy._id)}>Delete</button>
+                    <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
+                        <Link to={`/toy/edit/${toy._id}`}><Button variant="outlined">Edit</Button></Link>
+                        <Button variant="outlined" onClick={() => onRemove(toy._id)}>Delete</Button>
+                    </Stack>
                 </li>
             )}
         </ul>

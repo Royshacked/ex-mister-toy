@@ -10,6 +10,7 @@ import { ToyList } from "../cmps/ToyList.jsx"
 import { ToyFilter } from "../cmps/ToyFilter.jsx"
 
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer.js"
+import { Button } from "@mui/material"
 
 export function ToyIndex() {
     const toys = useSelector(state => state.toyModule.toys)
@@ -49,7 +50,7 @@ export function ToyIndex() {
         <div className="toys-header">
             <h2>Our Toys</h2>
             <ToyFilter filterBy={filterBy} />
-            <Link to='/toy/edit'><button>Add Toy</button></Link>
+            <Link to='/toy/edit'><Button variant='outlined'>Add Toy</Button></Link>
         </div>
 
         {!isLoading ? <ToyList toys={toys} onRemove={onRemove} /> : <h2>Loading...</h2>}

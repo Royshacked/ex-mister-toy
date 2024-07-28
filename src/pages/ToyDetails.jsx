@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom"
 
 import { toyService } from "../services/toy.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { Button } from "@mui/material"
 
 
 export function ToyDetails() {
@@ -34,6 +35,6 @@ export function ToyDetails() {
             <span>{toy.labels.join(',')}</span>
         </div>
 
-        <Link to="/toy"><button>Back</button></Link>
+        <Link to="/toy"><Button variant="outlined">Back</Button></Link>
     </section>
 }

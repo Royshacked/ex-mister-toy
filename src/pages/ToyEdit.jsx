@@ -7,6 +7,7 @@ import { toyService } from "../services/toy.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { saveToy } from "../store/actions/toy.actions"
+import { Button, Stack } from "@mui/material";
 
 const EditSchema = Yup.object().shape({
     name: Yup.string()
@@ -103,10 +104,13 @@ export function ToyEdit() {
                             </label>
                         )}
                     </div>
-                    <button type="submit">Save</button>
+
                 </Form>)}
         </Formik>
-        <Link to='/toy'><button>Back</button></Link>
+        <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
+            <Button variant='outlined' type="submit">Save</Button>
+            <Link to='/toy'><Button variant="outlined">Back</Button></Link>
+        </Stack>
     </section>
 }
 
