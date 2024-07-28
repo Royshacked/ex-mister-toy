@@ -3,11 +3,12 @@
   align-items: center;
 
   position: fixed;
-  bottom: 1em;
-  right: 1em;
+  top: 1em;
+  right: 50%;
 
   font-weight: 700;
-  border-radius: 2px solid lightgray;
+  border: 2px solid gray;
+  border-radius: 1rem;
   padding: 0.2em 0.5em;
 }
 

@@ -80,7 +80,7 @@ export function ToyEdit() {
             }}
             validationSchema={EditSchema}
         >
-            {({ errors, touched, values, initialValues }) => (
+            {({ errors, touched, values }) => (
 
                 <Form onSubmit={(ev) => onHandleSubmit(ev, values)} >
                     <h3>Toy's Name</h3>
