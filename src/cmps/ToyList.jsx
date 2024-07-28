@@ -13,7 +13,7 @@ export function ToyList({ toys, onRemove }) {
                     <ToyPreview toy={toy} />
                     <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
                         <Link to={`/toy/edit/${toy._id}`}><Button variant="outlined">Edit</Button></Link>
-                        <Button variant="outlined" onClick={() => onRemove(toy._id)}>Delete</Button>
+                        <Button variant="outlined" onClick={() => onRemove(toy._id)} sx={{ color: 'red', borderColor: 'red' }}>Delete</Button>
                     </Stack>
                 </li>
             )}

@@ -9,7 +9,8 @@
 
 .toy-filter .inputs-main {
     display: flex;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
 }
 

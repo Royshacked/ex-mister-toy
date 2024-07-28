@@ -108,8 +108,8 @@ export function ToyEdit() {
                 </Form>)}
         </Formik>
         <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
-            <Button variant='outlined' type="submit">Save</Button>
-            <Link to='/toy'><Button variant="outlined">Back</Button></Link>
+            <Button variant='outlined' type="submit" sx={{ color: 'green', borderColor: 'green' }}>Save</Button>
+            <Link to='/toy'><Button variant="outlined" sx={{ color: 'red', borderColor: 'red' }}>Back</Button></Link>
         </Stack>
     </section>
 }

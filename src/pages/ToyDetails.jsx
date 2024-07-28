@@ -35,6 +35,6 @@ export function ToyDetails() {
             <span>{toy.labels.join(',')}</span>
         </div>
 
-        <Link to="/toy"><Button variant="outlined">Back</Button></Link>
+        <Link to="/toy"><Button variant="outlined" sx={{ color: 'red', borderColor: 'red' }}>Back</Button></Link>
     </section>
 }
