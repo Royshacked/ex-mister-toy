@@ -7,7 +7,7 @@ import { toyService } from "../services/toy.service"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 
 import { saveToy } from "../store/actions/toy.actions"
-import { Button, Stack } from "@mui/material";
+import { Button, Checkbox, Stack, TextField } from "@mui/material";
 
 const EditSchema = Yup.object().shape({
     name: Yup.string()
@@ -86,13 +86,13 @@ export function ToyEdit() {
                 <Form onSubmit={(ev) => onHandleSubmit(ev, values)} >
                     <h3>Toy's Name</h3>
                     <label htmlFor="name">
-                        <Field name="name" id="name" placeholder="Enter name" required />
+                        <Field as={CustomInput} type="text" id="name" name="name" placeholder="Enter name" required />
                         {errors.name && touched.name && <div>{errors.name}</div>}
                     </label>
 
                     <h3>Toy's Price</h3>
                     <label htmlFor="price">
-                        <Field id="price" name="price" placeholder="Enter price" required />
+                        <Field as={CustomInput} type="number" id="price" name="price" placeholder="Enter price" required />
                         {errors.price && touched.price && <div>{errors.price}</div>}
                     </label>
 
@@ -100,18 +100,26 @@ export function ToyEdit() {
                     <div className="toy-edit-labels">
                         {labels.map(label =>
                             <label key={label} htmlFor={label}>{label}
-                                <Field type="checkbox" id={label} name="labels" value={label} checked={toyToEdit.labels.includes(label)} onChange={handleLabelChange}></Field>
+                                <Field as={CustomCheckBox} type="checkbox" id={label} name="labels" value={label} checked={toyToEdit.labels.includes(label)} onChange={handleLabelChange}></Field>
                             </label>
                         )}
                     </div>
-
+                    <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
+                        <Button variant='outlined' type="submit" sx={{ color: 'green', borderColor: 'green' }}>Save</Button>
+                        <Link to='/toy'><Button type="button" variant="outlined" sx={{ color: 'red', borderColor: 'red' }}>Back</Button></Link>
+                    </Stack>
                 </Form>)}
         </Formik>
-        <Stack spacing={2} direction="row" sx={{ justifyContent: 'center' }}>
-            <Button variant='outlined' type="submit" sx={{ color: 'green', borderColor: 'green' }}>Save</Button>
-            <Link to='/toy'><Button variant="outlined" sx={{ color: 'red', borderColor: 'red' }}>Back</Button></Link>
-        </Stack>
+
     </section>
 }
 
+
+function CustomInput(props) {
+    return <TextField {...props} />
+}
+
+function CustomCheckBox(props) {
+    return <Checkbox {...props} />
+}
 

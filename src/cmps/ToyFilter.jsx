@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer"
 import { toyService } from "../services/toy.service"
 import { useEffect, useState } from "react"
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { Checkbox, MenuItem, Select } from "@mui/material";
 
 export function ToyFilter() {
     const filterByToEdit = useSelector(state => state.toyModule.filterBy)
@@ -45,29 +44,13 @@ export function ToyFilter() {
                 <TextField label="Toy's name" variant="outlined" type="text" name="name" id="name" placeholder="Toy's name" onChange={handleChange} value={filterByToEdit.name || ''} />
             </label>
 
-
-            {/* <label htmlFor="instock">
-                <select name="inStock" id="instock" onChange={handleChange} value={filterByToEdit.inStock}>
-                    <option value="all">All</option>
-                    <option value="true">In stock</option>
-                    <option value="false">Not in stock</option>
-                </select>
-            </label> */}
-            {/* <InputLabel id="instock"></InputLabel> */}
-            <Select
-                labelId="instock"
-                id="instock"
-                name="inStock"
-                value={filterByToEdit.inStock}
-                label="In Stock?"
-                onChange={handleChange}
-            >
+            <Select labelId="instock" id="instock" name="inStock" label="InStock?" value={filterByToEdit.inStock} onChange={handleChange} >
                 <MenuItem value='all'>All</MenuItem>
                 <MenuItem value='true'>In Stock</MenuItem>
                 <MenuItem value='false'>Not in Stock</MenuItem>
             </Select>
 
-            <Select labelId='sortby' name="sortBy" id="sortby" onChange={handleChange} value={filterByToEdit.sortBy}>
+            <Select labelId='sortby' id="sortby" name="sortBy" label="Sortby" value={filterByToEdit.sortBy} onChange={handleChange} >
                 <MenuItem value="">Sort By</MenuItem>
                 <MenuItem value="name">Name</MenuItem>
                 <MenuItem value="price">Price</MenuItem>
@@ -75,8 +58,8 @@ export function ToyFilter() {
             </Select>
 
             {filterByToEdit.sortBy && <label htmlFor="desc">
-                <input type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />
-                {+filterByToEdit.desc > 0 ? '📈' : '📉'}
+                <Checkbox type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />
+                {+filterByToEdit.desc > 0 ? '⬆️' : '⬇️'}
             </label>}
 
             <Select multiple labelId="labels" label="labels" name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []}>
@@ -89,3 +72,4 @@ export function ToyFilter() {
     </section>
 }
 
+<Checkbox defaultChecked />
