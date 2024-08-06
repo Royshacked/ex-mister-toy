@@ -17,20 +17,28 @@ function getById(userId) {
     return storageService.get(STORAGE_KEY, userId)
 }
 
-function login({ username, password }) {
-    return storageService.query(STORAGE_KEY)
-        .then(users => {
-            const user = users.find(user => user.username === username)
-            // if (user && user.password !== password) return _setLoggedinUser(user)
-            if (user) return _setLoggedinUser(user)
-            else return Promise.reject('Invalid login')
-        })
+async function login({ username, password }) {
+    try {
+        const users = await storageService.query(STORAGE_KEY)
+        const user = users.find(user => user.username === username)
+        try {
+            return _setLoggedinUser(user)
+        } catch (error) {
+            throw new Error('there was a problem')
+        }
+    } catch (error) {
+        throw new Error('there was a problem')
+    }
 }
 
-function signup({ username, password, fullname }) {
+async function signup({ username, password, fullname }) {
     const user = { username, password, fullname }
-    return storageService.post(STORAGE_KEY, user)
-        .then(_setLoggedinUser)
+    try {
+        const newUser = await storageService.post(STORAGE_KEY, user)
+        return _setLoggedinUser(newUser)
+    } catch (error) {
+        throw new Error('there was a problem signing up')
+    }
 }
 
 function logout() {
