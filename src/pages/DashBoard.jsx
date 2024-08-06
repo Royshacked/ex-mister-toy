@@ -15,12 +15,16 @@ export function DashBoard() {
     const labels = toyService.getLabels()
 
     useEffect(() => {
-        loadToys()
-            .then((toys) => console.log(toys))
-            .catch((err) => {
+        const fetchData = async () => {
+            try {
+                await loadToys()
+            } catch (error) {
                 console.log(err)
                 showErrorMsg('Couldn\'nt load toys')
-            })
+            }
+        }
+
+        fetchData()
     }, [])
 
     return <section className="dashboard">

@@ -5,6 +5,8 @@ import { toyService } from "../services/toy.service"
 import { useEffect, useState } from "react"
 import TextField from '@mui/material/TextField';
 import { Checkbox, MenuItem, Select } from "@mui/material";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 export function ToyFilter() {
     const filterByToEdit = useSelector(state => state.toyModule.filterBy)
@@ -13,8 +15,15 @@ export function ToyFilter() {
 
 
     useEffect(() => {
-        toyService.getLabelsForFilter()
-            .then(setLabelsForFilter)
+        const fetchData = async () => {
+            try {
+                const fetchedLabels = await toyService.getLabelsForFilter()
+                setLabelsForFilter(fetchedLabels)
+            } catch (error) {
+                console.log(err)
+            }
+        }
+        fetchData()
     }, [])
 
     function handleChange({ target }) {
@@ -58,12 +67,12 @@ export function ToyFilter() {
             </Select>
 
             {filterByToEdit.sortBy && <label htmlFor="desc">
-                <Checkbox type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} />
-                {+filterByToEdit.desc > 0 ? '⬆️' : '⬇️'}
+                <Checkbox type="checkbox" name="desc" id="desc" onChange={handleChange} checked={+filterByToEdit.desc < 0} sx={{ display: 'none' }} />
+                {+filterByToEdit.desc > 0 ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
             </label>}
 
-            <Select multiple labelId="labels" label="labels" name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []}>
-                <MenuItem value="">None</MenuItem>
+            <Select multiple labelId="labels" label="labels" name="labels" id="labels" onChange={handleChange} value={filterByToEdit.labels || []} sx={{ width: 200 }}>
+                {/* <MenuItem value="">None</MenuItem> */}
                 {labelsForFilter.map(label =>
                     <MenuItem key={label} value={label}>{label}</MenuItem>
                 )}

@@ -30,22 +30,30 @@ export function ToyIndex() {
 
     useEffect(() => {
         setSearchParams({ ...filterBy, labels: filterBy.labels ? filterBy.labels.join(',') : '' })
-        loadToys(filterBy)
-            .then((toys) => console.log(toys))
-            .catch((err) => {
+        const fetchData = async () => {
+            try {
+                const toys = await loadToys(filterBy)
+                console.log(toys)
+            }
+            catch (err) {
                 console.log(err)
                 showErrorMsg('Couldn\'nt load toys')
-            })
+            }
+        }
+        fetchData()
     }, [filterBy])
 
-    function onRemove(toyId) {
-        removeToy(toyId)
-            .then(() => showSuccessMsg(`Toy ${toyId} has been removed successfully`))
-            .catch((err) => {
-                console.log(err)
-                showErrorMsg('Couldn\'nt remove toy')
-            })
+    async function onRemove(toyId) {
+        try {
+            await removeToy(toyId)
+            showSuccessMsg(`Toy ${toyId} has been removed successfully`)
+        }
+        catch (err) {
+            console.log(err)
+            showErrorMsg('Couldn\'nt remove toy')
+        }
     }
+
     return <section className="toy-index">
         <div className="toys-header">
             <h2>Our Toys</h2>

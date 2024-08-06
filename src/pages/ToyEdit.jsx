@@ -31,13 +31,15 @@ export function ToyEdit() {
         loadToyToEdit(id)
     }, [])
 
-    function loadToyToEdit(id) {
-        return toyService.getById(id)
-            .then(setToyToEdit)
-            .catch((err) => {
-                console.log(err)
-                showErrorMsg('Could\'nt get toy for edit')
-            })
+    async function loadToyToEdit(id) {
+        try {
+            const toy = await toyService.getById(id)
+            return setToyToEdit(toy)
+        }
+        catch (err) {
+            console.log(err)
+            showErrorMsg('Could\'nt get toy for edit')
+        }
     }
 
     function handleLabelChange({ target }) {
@@ -58,19 +60,18 @@ export function ToyEdit() {
         return newLabels
     }
 
-    function onHandleSubmit(ev, values) {
+    async function onHandleSubmit(ev, values) {
         ev.preventDefault()
-        console.log(toyToEdit)
-        saveToy({ ...toyToEdit, name: values.name, price: values.price })
-            .then(() => {
-                navigate('/toy')
-                showSuccessMsg(id ? 'Changes saved' : 'Toy added successfully')
-            })
-            .catch((err) => {
-                console.log(err)
-                showErrorMsg('Could\'nt save toy')
-            })
+        try {
+            await saveToy({ ...toyToEdit, name: values.name, price: values.price })
+            navigate('/toy')
+            showSuccessMsg(id ? 'Changes saved' : 'Toy added successfully')
+        } catch (error) {
+            console.log(err)
+            showErrorMsg('Could\'nt save toy')
+        }
     }
+
     return <section className="toy-edit">
         <h2>{id ? 'Edit Toy' : 'Add a Toy'}</h2>
         <Formik

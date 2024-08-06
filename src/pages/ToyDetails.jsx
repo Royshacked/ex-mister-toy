@@ -14,15 +14,16 @@ export function ToyDetails() {
         loadToy(id)
     }, [])
 
-    function loadToy(id) {
-        return toyService.getById(id)
-            .then(toy => setToy(toy))
-            .catch((err) => {
-                console.log(err)
-                showErrorMsg('Could\'nt get toy')
-            })
-
+    async function loadToy(id) {
+        try {
+            const toy = await toyService.getById(id)
+            return setToy(toy)
+        } catch (error) {
+            console.log(err)
+            showErrorMsg('Could\'nt get toy')
+        }
     }
+
     if (!toy) return <h2>Loading...</h2>
     return <section className="toy-details">
         <div>
