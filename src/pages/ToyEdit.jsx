@@ -67,7 +67,7 @@ export function ToyEdit() {
             navigate('/toy')
             showSuccessMsg(id ? 'Changes saved' : 'Toy added successfully')
         } catch (error) {
-            console.log(err)
+            console.log(error)
             showErrorMsg('Could\'nt save toy')
         }
     }

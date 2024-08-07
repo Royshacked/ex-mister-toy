@@ -47,9 +47,10 @@ export function LoginSignup() {
     }
 
     if (user) return <section className="main-user-loggedin">
-        <h3>Hello {user.fullname}</h3>
+        <h3>{user.fullname} logged in</h3>
         <button className='user-button' onClick={onLogout}>Logout</button>
     </section>
+
     return <section className="user-main">
         <Formik
             initialValues={{

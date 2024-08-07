@@ -45,26 +45,54 @@ export const toyService = {
 }
 
 
-function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+async function query(filterBy = {}) {
+    try {
+        const toys = await httpService.get(BASE_URL, filterBy)
+        return toys
+    } catch (error) {
+        console.log(error)
+        throw err
+    }
 }
 
-function getById(toyId) {
-    return httpService.get(BASE_URL + toyId)
+async function getById(toyId) {
+    try {
+        const toy = await httpService.get(BASE_URL + toyId)
+        return toy
+    } catch (error) {
+        console.log(error)
+        throw err
+    }
 }
 
-function remove(toyId) {
-    // return Promise.reject('Not now!')
-    return httpService.delete(BASE_URL + toyId)
+async function remove(toyId) {
+    try {
+        await httpService.delete(BASE_URL + toyId)
+    } catch (error) {
+        console.log(error)
+        throw err
+    }
 }
 
 
-function save(toy) {
+async function save(toy) {
     if (toy._id) {
-        return httpService.put(BASE_URL, toy)
+        try {
+            const savedToy = await httpService.put(BASE_URL, toy)
+            return savedToy
+        } catch (error) {
+            console.log(error)
+            throw err
+        }
     } else {
+        try {
+            const savedToy = await httpService.post(BASE_URL, toy)
+            return savedToy
+        } catch (error) {
+            console.log(error)
+            throw err
+        }
         // toy.createdAt = Date.now()
-        return httpService.post(BASE_URL, toy)
     }
 }
 
@@ -93,8 +121,14 @@ function getFilterFromSearchParams(searchParams) {
     }
 }
 
-function getLabelsForFilter() {
-    return httpService.get(BASE_URL + 'labels')
+async function getLabelsForFilter() {
+    try {
+        const labels = await httpService.get(BASE_URL + 'labels')
+        return labels
+    } catch (error) {
+        console.log(error)
+        throw err
+    }
 }
 
 function getLabels() {

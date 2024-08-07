@@ -14,6 +14,7 @@ import { Button } from "@mui/material"
 import { LoginSignup } from "../cmps/LoginSignup.jsx"
 
 export function ToyIndex() {
+    const user = useSelector(state => state.userModule.loggedInUser)
     const toys = useSelector(state => state.toyModule.toys)
     const filterBy = useSelector(state => state.toyModule.filterBy)
     const isLoading = useSelector(state => state.toyModule.isLoading)
@@ -47,7 +48,7 @@ export function ToyIndex() {
     async function onRemove(toyId) {
         try {
             await removeToy(toyId)
-            showSuccessMsg(`Toy ${toyId} has been removed successfully`)
+            showSuccessMsg(`Toy has been removed successfully`)
         }
         catch (err) {
             console.log(err)
@@ -62,7 +63,7 @@ export function ToyIndex() {
             </div>
 
             <ToyFilter filterBy={filterBy} />
-            <Link to='/toy/edit'><Button variant='outlined'>Add Toy</Button></Link>
+            {user && user.isAdmin && <Link to='/toy/edit'><Button variant='outlined'>Add Toy</Button></Link>}
         </div>
 
         {!isLoading ? <ToyList toys={toys} onRemove={onRemove} /> : <h2>Loading...</h2>}
