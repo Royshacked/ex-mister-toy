@@ -38,7 +38,6 @@ async function signup(credentials) {
     // const user = { username, password, fullname }
     try {
         const newUser = await httpService.post(AUTH_URL + 'signup', credentials)
-        console.log(newUser)
         return _setLoggedinUser(newUser)
     } catch (error) {
         throw new Error('there was a problem signing up')

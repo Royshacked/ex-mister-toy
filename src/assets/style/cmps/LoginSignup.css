@@ -1,0 +1,28 @@
+.user-main {
+    padding-inline: 3rem;
+}
+
+.user-button {
+    background-color: #fff !important;
+}
+
+.user-button:hover {
+    border-color: black !important;
+}
+
+.user-main .user-log {
+    font-weight: bold;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.user-main .user-log:hover {
+    color: blue;
+}
+
+.main-user-loggedin {
+    display: flex;
+
+    gap: 1rem;
+    padding-inline: 3rem;
+}

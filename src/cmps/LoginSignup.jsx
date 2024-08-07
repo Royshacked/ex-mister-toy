@@ -46,9 +46,9 @@ export function LoginSignup() {
         }
     }
 
-    if (user) return <section className="main-user">
+    if (user) return <section className="main-user-loggedin">
         <h3>Hello {user.fullname}</h3>
-        <Button onClick={onLogout}>Logout</Button>
+        <button className='user-button' onClick={onLogout}>Logout</button>
     </section>
     return <section className="user-main">
         <Formik
@@ -64,28 +64,25 @@ export function LoginSignup() {
                 <Form onSubmit={(ev) => onHandleSubmit(ev, values)} >
 
                     <label htmlFor="username">
-                        <span>Username</span>
-                        <Field as={CustomUserInput} type="text" id="username" name="username" placeholder="Username" required />
+                        <Field type="text" id="username" name="username" placeholder="Username" required />
                         {/* {errors.username && touched.username && <span>{errors.username}</span>} */}
                     </label>
 
 
                     <label htmlFor="password">
-                        <span>Password</span>
-                        <Field as={CustomUserInput} type="password" id="password" name="password" placeholder="Password" required />
+                        <Field type="password" id="password" name="password" placeholder="Password" required />
                         {/* {errors.password && touched.password && <div>{errors.password}</div>} */}
                     </label>
 
 
                     {!isLogin && <label htmlFor="fullname">
-                        <span>Fullname</span>
-                        <Field as={CustomUserInput} type="text" id="fullname" name="fullname" placeholder="Fullname" required />
+                        <Field type="text" id="fullname" name="fullname" placeholder="Fullname" required />
                         {/* {errors.fullname && touched.fullname && <div>{errors.fullname}</div>} */}
                     </label>}
-                    <Button variant='outlined' type="submit" sx={{ color: 'gray', borderColor: 'gray' }}>{isLogin ? 'Login' : 'Signup'}</Button>
+                    <button className='user-button' variant='outlined' type="submit" sx={{ color: 'gray', borderColor: 'gray' }}>{isLogin ? 'Login' : 'Signup'}</button>
                 </Form>)}
         </Formik>
-        <span>Would you like to <span onClick={() => onLoginSignup(true)}>Login</span> or <span onClick={() => onLoginSignup(false)}>Signup?</span></span>
+        <span>Would you like to <span className="user-log" onClick={() => onLoginSignup(!isLogin)}>{isLogin ? 'Signup' : 'Login'}?</span></span>
     </section>
 }
 
@@ -106,5 +103,5 @@ const EditSchema = Yup.object().shape({
 
 
 function CustomUserInput(props) {
-    return <TextField {...props} />
+    return <TextField {...props} sx={{ height: 20 }} />
 }

@@ -59,8 +59,8 @@ export function ToyIndex() {
         <div className="index-header">
             <div className="index-user">
                 <h2>Our Toys</h2>
-                <LoginSignup />
             </div>
+
             <ToyFilter filterBy={filterBy} />
             <Link to='/toy/edit'><Button variant='outlined'>Add Toy</Button></Link>
         </div>
