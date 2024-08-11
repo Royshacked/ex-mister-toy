@@ -11,7 +11,6 @@ import { ToyFilter } from "../cmps/ToyFilter.jsx"
 
 import { SET_FILTER_BY } from "../store/reducers/toy.reducer.js"
 import { Button } from "@mui/material"
-import { LoginSignup } from "../cmps/LoginSignup.jsx"
 
 export function ToyIndex() {
     const user = useSelector(state => state.userModule.loggedInUser)
